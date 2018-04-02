@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TestForm</title>
+</head>
+<body>
+{#    <form action="">#}
+{#        <label for="{{ form.name.id_for_label }}">Имя:</label>#}
+{#        <p>{{ form.name }}</p>#}
+{#        <small>{{ form.name.help_text }}</small>#}
+{##}
+{#        <label for="{{ form.age.id_for_label }}">Возраст:</label>#}
+{#        <p>{{ form.age }}</p>#}
+{#        <small>{{ form.age.help_text }}</small>#}
+{##}
+{#        <label for="{{ form.birth.id_for_label }}">День рождения:</label>#}
+{#        <p>{{ form.birth }}</p>#}
+{#        <small>{{ form.birth.help_text }}</small>#}
+{#    </form>#}
+    {% if is_valid %}
+        <h2>Данные приняты</h2>
+    {% else %}
+    <form method="post">
+        {% csrf_token %}
+        {% for field in form %}
+            <label for="{{ field.id_for_label }}">{{ field.name }}</label>
+            <p>{{ field }}</p>
+            <small>{{ field.help_text }}</small>
+            <ul>
+            {% for error in field.errors %}
+                 <li style="color: red">{{ error }}</li>
+            {% endfor %}
+            </ul>
+        {% endfor %}
+        <input type="submit" >
+    </form>
+    {% endif %}
+</body>
+</html>
