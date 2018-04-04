@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <table>
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Изменить</th>
+                    <th>Удалить</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for test in test_list %}
+                <tr>
+                    <td>{{ test.name }}</td>
+                    <td><a href="{% url 'update' test.id %}">Изменить</a></td>
+                    <td><a href="{% url 'delete' test.id %}">Удалить</a></td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+</body>
+</html>
